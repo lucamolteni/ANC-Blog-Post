@@ -418,7 +418,7 @@ At the end we add a Rule Terminal Node with the result, in this case
 
 ```
 
-### Assembling the evaluation
+## Assembling the evaluation
 
 ```java
 public class DMNAlphaNetwork_an_45simpletable_45multipletests implements DMNCompiledAlphaNetwork {
@@ -445,7 +445,7 @@ public class DMNAlphaNetwork_an_45simpletable_45multipletests implements DMNComp
 
 Here we have the class that generates the rete in the `initRete` method and that evaluates it in the `evaluate` method.
 
-### Generated ANC - Setup
+## Generated ANC - Setup
 
 Finally here's part of the compiled Alpha Network. Only a few of the constraints in fields are shown. 
 The interesting part is in the `propagateAssertObject` method.
