@@ -45,7 +45,7 @@ When a Drools Pattern has two different constraints, then one node for each cons
 
 will generate two different Alpha Nodes.
 
-In the diagram shown before, we have a Pattern with three constraints, therefore three Alpha Nodes.
+In the diagram shown before, we have a Pattern with three constraints, therefore that will require a total of three Alpha Nodes.
 
 ## Rule Terminal Node
 
