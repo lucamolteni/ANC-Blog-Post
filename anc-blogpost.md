@@ -68,7 +68,7 @@ end
 
 rule "Luca greater than 30"
 when
-    Person(name == "Luca", age >= 30)
+    Person(age >= 30, name == "Luca")
 then
 end
 ```
