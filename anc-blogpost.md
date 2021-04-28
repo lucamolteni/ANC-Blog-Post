@@ -2,7 +2,7 @@
 
 ## Quick introduction to Rete nodes 
 
-Drools is a rule engine based on PHREAK, an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy. 
+Drools is a rule engine based on [PHREAK](https://docs.jboss.org/drools/release/latest/drools-docs/html_single/#phreak-algorithm-con_decision-engine), an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy. 
 In this article we're going to take a deep insight to some of the internals of the system and to a specific feature called "Alpha Network Compiler", which has been present for a quite while in the code base but only recently has started to being used actively.
 
 Rules evaluation in Drools is based on a data structure called Rete (meaning "network" in Latin) which is a discrimination tree comprised of different possible kind of nodes. Here's some examples of such nodes:
@@ -33,11 +33,11 @@ There's one OTN for each Java Type defined in each pattern. If two rules have tw
 
 ## What is an Alpha Node?
 
-[Alpha Nodes](https://github.com/kiegroup/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/AlphaNode.java) represent a constraint inside the network. Examples of a constraint might be
+[Alpha Nodes](https://github.com/lucamolteni/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/AlphaNode.java) represent a constraint inside the network. Examples of a constraint might be
 
-`age > 30`
-`name == "Luca"`
-`surname startsWith("M")`
+- `name == "Luca"`
+- `age > 30`
+- `surname startsWith("M")`
 
 When a Drools Pattern has two different constraints, then one node for each constraint will be created.
 
