@@ -347,7 +347,7 @@ Here's an example of such table, for more information on what DMN Decision Table
 
 We parse a DMN Decision Table and for each cell we generate an Alpha Node with a constraint.
 Then, after a round of node sharing, we give the Alpha Nodes as inputs of the ANC (Alpha Network Compiler) and we generate the class using the output of the Decision Table as a Rule Terminal Node.
-We created a benchmark out of this and discovered that this approach is faster than evaluating a Decision Table with a brute force approach.
+We created a benchmark out of a pragmatic use-case and confirmed that this approach is indeed faster than evaluating a Decision Table with a brute force approach.
 
 ![inline](dt-benchmark.png)
 
