@@ -2,10 +2,10 @@
 
 ## Quick introduction to Rete nodes 
 
-Drools is a rule engine based on an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy called PHREAK. 
+Drools is a rule engine based on PHREAK, an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy. 
 In this article we're going to take a deep insight to some of the internals of the system and to a specific feature called "Alpha Network Compiler", which has been present for a quite while in the code base but only recently has started to being used actively.
 
-You might know that the rules evaluation in Drools is based on a data structure called Rete (meaning "network" in Latin) which is a tree comprised of different possible kind of nodes. Here's some examples of such nodes:
+Rules evaluation in Drools is based on a data structure called Rete (meaning "network" in Latin) which is a discrimination tree comprised of different possible kind of nodes. Here's some examples of such nodes:
 
 - **Object Type Nodes** 
 - **Alpha Nodes**
@@ -13,7 +13,7 @@ You might know that the rules evaluation in Drools is based on a data structure 
 - BetaNode
 - Other kinds
 
-The Alpha Network Compiler is an optimization that is effective when the Rete is an "Alpha Network" which is a shortcut to say it's a Rete  consisting only of Object Type Nodes, Alpha Nodes and Rule Terminal Nodes. 
+The Alpha Network Compiler is an optimization that is effective when the Rete is assimilable to a pure "Alpha Network" only, which is a shortcut to say it's a Rete  consisting only of Object Type Nodes, Alpha Nodes and Rule Terminal Nodes. 
 In this article, for the sake of simplicity there won't be any references to other kinds of nodes.
 
 When dealing with Drools rules evaluation it's useful to see the relationship between the nodes in a graphical way, so here's an example of a very simple Rete.
