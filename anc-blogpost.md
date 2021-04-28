@@ -10,7 +10,7 @@ Rules evaluation in Drools is based on a data structure called Rete (meaning "ne
 - **Object Type Nodes** 
 - **Alpha Nodes**
 - **Rule Terminal Nodes**
-- BetaNode
+- Beta Nodes
 - Other kinds
 
 The Alpha Network Compiler is an optimization that is effective when the Rete is assimilable to a pure "Alpha Network" only, which is a shortcut to say it's a Rete  consisting only of Object Type Nodes, Alpha Nodes and Rule Terminal Nodes. 
@@ -287,7 +287,7 @@ As you can see there is an external if that maps to the `age > 20` conditions an
 
 ## Inlining 
 
-A more interesting fact happens when we have multiple hashable constraints as we saw before, let's take as an example this rule:
+A more interesting fact happens when we have multiple hashable constraints as we saw before, let's take as an example these rules:
 
 ```
     rule r1
