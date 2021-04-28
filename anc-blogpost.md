@@ -2,7 +2,7 @@
 
 ## Quick introduction to Rete nodes 
 
-Drools is a rule engine based on an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy. 
+Drools is a rule engine based on an evolution of the original 1974 [Rete Algorithm](https://en.wikipedia.org/wiki/Rete_algorithm) by Charles L. Forgy called PHREAK. 
 In this article we're going to take a deep insight to some of the internals of the system and to a specific feature called "Alpha Network Compiler", which has been present for a quite while in the code base but only recently has started to being used actively.
 
 You might know that the rules evaluation in Drools is based on a data structure called Rete (meaning "network" in Latin) which is a tree comprised of different possible kind of nodes. Here's some examples of such nodes:
@@ -56,7 +56,7 @@ consequence of the rules, but here we skip the explanation of the Agenda as it's
 
 ## Alpha Node Sharing
 
-Let's see the first optimization of the PHREAK network: Alpha Node Sharing.
+Let's see the first optimization of the Rete network: Alpha Node Sharing.
 As we said before, each constraint inside a pattern will generate a single Alpha Node, but when constraints are identical, even among different Patterns and rules, only a single Alpha Nodes will be created. 
 
 ```
@@ -197,7 +197,7 @@ Hashing is one of the first optimization that is implemented in the current code
 When a field is hashable, for example when dealing with String and Integers, after a certain amount of Alpha Nodes the system will keep an internal map of nodes using the fact value as the key.
 This improves the evaluation of a fact against multiple Alpha Nodes, as a simple `.get` in the map will bring us the correct next node to propagate the object to.
 
-When we build the rete, we could do something among this line, assuming that we have patterns that check Strings that are equals to "10", "20" and "30":
+When we build the rete, we could do something similar to this snippet of code, assuming that we have patterns that check Strings that are equals to "10", "20" and "30":
 
 ```java
         hashedSinkMap.put("10", terminalNode10);
