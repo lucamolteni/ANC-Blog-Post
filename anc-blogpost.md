@@ -157,7 +157,7 @@ class TerminalNode implements DroolsNode {
 
 ```
 
-When there are multiple non-related Alpha Nodes, each Alpha Node will be checked against the input object.(see [Drools'](https://github.com/kiegroup/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/CompositeObjectSinkAdapter.java#L619))
+When there are multiple non-related Alpha Nodes, each Alpha Node will be checked against the input object.(see [Drools' CompositeObjectSinkAdapter](https://github.com/kiegroup/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/CompositeObjectSinkAdapter.java#L619))
 This is not efficient as we need to check a predicate that could be expressed in Java with a simple `if` using dynamic dispatch against every single Alpha Node. This is due to the fact that the JVM doesn't know the concrete implementation of the `DroolsNode` interface. 
 The code shown in this article is simple enough and works well for demonstration purposes, but is terribly inefficient. 
 Consider that common Drools projects might have thousands Alpha Nodes, if not more.
