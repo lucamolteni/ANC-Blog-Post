@@ -340,7 +340,7 @@ tests in the `drools-alphanetwork-compiler` in the [repository](https://github.c
 
 ## Using the ANC in DMN Alpha Network
 
-There is an experimental feature in the current Drools code base in which we use the Alpha Network Compiler to evaluate a DMN Decision Table in the fastest way possible.
+There is an ongoing work for an experimental feature in the current Drools code base in which we will use the Alpha Network Compiler to evaluate a DMN Decision Table in the fastest way possible.
 Here's an example of such table, for more information on what DMN Decision Tables are check the [DMN documentation](https://docs.jboss.org/drools/release/7.53.0.Final/drools-docs/html_single/index.html#dmn-decision-tables-con_dmn-models).
 
 ![inline](dt.png)
@@ -351,8 +351,7 @@ We created a benchmark out of this and discovered that this approach is faster t
 
 ![inline](dt-benchmark.png)
 
-The current implementation is stil a POC and not production ready, but certainly the performance data means the we'll further evolve it to have the 
-fastest Decision Table evaluation we can get, leveraging all the optimisation we showed in Drools before.
+The current implementation is stil a proof-of-concept and not production ready, but certainly the performance metrics collected demonstrate the benefits, then we'll further evolve it to have the fastest Decision Table evaluation we can get, leveraging all the optimisation we showed in Drools before.
 
 Here's an example of what we produce
 
@@ -380,7 +379,7 @@ public class UnaryTestR1C1 implements CompiledFEELUnaryTests {
 }
 ```
 
-This is a simple constraint `>= 18` compiled into Java.
+This is a FEEL constraint `>= 18` translated into Java code.
 
 ## Alpha Node Creation
 
