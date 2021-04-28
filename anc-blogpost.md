@@ -287,7 +287,7 @@ As you can see there is an external if that maps to the `age > 20` conditions an
 
 ## Inlining 
 
-A more interesting fact happens when we have multiple hashable constraints as we saw before, let's take as an example this rule:
+A more interesting fact happens when we have multiple hashable constraints as we saw before, let's take as an example this knowledge base consisting of three rules:
 
 ```
     rule r1
