@@ -41,7 +41,7 @@ There's one OTN for each Java Type defined in each pattern. If two rules have tw
 
 When a Drools Pattern has two different constraints, then one node for each constraint will be created.
 
-`Person(name == "Luca, surname startsWith("M"))`
+`Person(name == "Luca", surname startsWith("M"))`
 
 will generate two different Alpha Nodes.
 
@@ -57,7 +57,7 @@ consequence of the rules, but here we skip the explanation of the Agenda as it's
 ## Alpha Node Sharing
 
 Let's see the first optimization of the Rete network: Alpha Node Sharing.
-As we said before, each constraint inside a pattern will generate a single Alpha Node, but when constraints are identical, even among different Patterns and rules, only a single Alpha Nodes will be created. 
+As we said before, each constraint inside a pattern will generate a single Alpha Node, but when constraints are identical, even among different Patterns and rules, only a single Alpha Node will be created. 
 
 ```
 rule "Luca minus 30"
@@ -72,7 +72,7 @@ when
 then
 end
 ```
-In this example, only three Alpha Nodes will be created: as the first constraint `Person(name == "Luca)` is identical in both rules
+In this example, only three Alpha Nodes will be created: as the first constraint `Person(name == "Luca")` is identical in both rules
 it'll generate one Alpha Node, while the other two constraints `age < 30` and  `age >= 30` will generate one Alpha Node each.
 Here's a diagram to represent node sharing:
 
@@ -92,7 +92,7 @@ This interface will have the method that we need to propagate among nodes to eva
 ```
 And each node will implement this method in a different fashion. 
 
-Here's an example on how we could write a simple ObjectTypeNode (the actual code is much more complicated as there's some caching of the types: 
+Here's an example on how we could write a simple Object Type Node (the actual code is much more complicated as there's some caching of the types: 
 [here](https://github.com/lucamolteni/drools/blob/bce0ad40a2e460963514d8cc79b82d84ec3e956e/drools-core/src/main/java/org/drools/core/common/ObjectTypeConfigurationRegistry.java#L53) the value is cached and [here](https://github.com/lucamolteni/drools/blob/fdccf1829fbc8e7f6fcb9ee5af45a70d3de916b6/drools-core/src/main/java/org/drools/core/phreak/PropagationEntry.java#L161) it's propagated.)
 
 ```java
@@ -142,7 +142,7 @@ And here's an example on how we could implement a simple Alpha Node
 ```
 
 After being evaluated in the Object Type Node, the OTN will call `assertObject` on the first child, which will evaluate the constraints (in this case a simple Java predicate) to eventually propagate the assertion to the next node. 
-When the last node is an AlphaRuleTerminalNode, the evaluation will end.
+When the last node is an Rule Terminal Node, the evaluation will end.
 
 Here's a stub implementation of a Terminal Node, which doesn't do anything at all. 
 
@@ -215,7 +215,7 @@ Then the evaluation will be much faster using the Map `get` method.
 ```
 
 What I wanted to show you is just one of the optimisation that is in the code base. 
-There are many more and most of them are specialized in to collapsing the search space, effectively reducing the number of evaluations.
+There are many more and most of them are specialized in collapsing the search space, effectively reducing the number of evaluations.
 
 ## Alpha Network Compiler (ANC)
 
@@ -499,7 +499,7 @@ public class CompiledAlphaNetwork extends org.drools.ancompiler.CompiledNetwork 
 
 ## Further Improvements
 
-We don't consider compiled Alpha Network only as an performance optimisation but we think in the future it could become also a "lean" representation of an Alpha Network without using the full rete generate by the executable model.
+We don't consider compiled Alpha Network only as an performance optimisation but we think in the future it could become also a "lean" representation of an Alpha Network without using the full rete in memory.
 The work of the DMN Alpha Network is still a work in progress. We still to need to support all the possible hit policies and moreover move most of the generation at compile time, so that when instantiating the compiled Alpha Network we don't need the full rete. 
 Currently this is not doable, if you check the `setNetworkNodeReference` that unwraps the constraint in fields you can see it takes the node of the Rete as an input, but this is totally avoidable.
 We could also inline the constraints and therefore removing `LambdaConstraints` that use the virtual table indirection we discussed before.  
