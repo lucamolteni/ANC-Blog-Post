@@ -157,7 +157,7 @@ class TerminalNode implements DroolsNode {
 
 ```
 
-When there are multiple non-related Alpha Nodes, each Alpha Node will be checked against the input object.(see [Drools' CompositeObjectSinkAdapter](https://github.com/kiegroup/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/CompositeObjectSinkAdapter.java#L619))
+When there are multiple non-related Alpha Nodes, each Alpha Node will be checked against the input object.(see [Drools' CompositeObjectSinkAdapter](https://github.com/lucamolteni/drools/blob/54c3bf1a0b1297b3d1594cf3229d9e6218dd1ebc/drools-core/src/main/java/org/drools/core/reteoo/CompositeObjectSinkAdapter.java#L619))
 This is not efficient as we need to check a predicate that could be expressed in Java with a simple `if` using dynamic dispatch against every single Alpha Node. This is due to the fact that the JVM doesn't know the concrete implementation of the `DroolsNode` interface. 
 The code shown in this article is simple enough and works well for demonstration purposes, but is terribly inefficient. 
 Consider that common Drools projects might have thousands Alpha Nodes, if not more.
@@ -168,9 +168,7 @@ Here's an example of the "brute force" evaluation of all the constraints.
 
 class DroolsObjectTypeNode implements DroolsNode {
 
-    DroolsNode nextNode;
     private Class<?> clazz;
-
     List<DroolsNode> alphaNodes;
 
     public DroolsObjectTypeNode(Class<?> clazz, List<DroolsNode> alphaNodes) {
@@ -181,7 +179,7 @@ class DroolsObjectTypeNode implements DroolsNode {
     @Override
     public void assertObject(Object s) {
         if(clazz.isAssignableFrom(s.getClass())) {
-            for (DroolsNode p : constraints) {
+            for (DroolsNode p : alphaNodes) {
                 p.assertObject(s);
             }
         }
@@ -336,7 +334,7 @@ ANCBenchmark.testInlining    10000  avgt   12  0.083 ± 0.012  ms/op
 ## How to use the Alpha Network Compiler?
 
 To try the `Alpha Network Compiler` in Drools you can check che [ANC Documentation](https://docs.jboss.org/drools/release/7.53.0.Final/drools-docs/html_single/index.html#_alpha_network_compiler) and the 
-tests in the `drools-alphanetwork-compiler` in the [repository](https://github.com/kiegroup/drools/tree/master/drools-alphanetwork-compiler)
+tests in the `drools-alphanetwork-compiler` in the [repository](https://github.com/lucamolteni/drools/tree/master/drools-alphanetwork-compiler)
 
 ## Using the ANC in DMN Alpha Network
 
